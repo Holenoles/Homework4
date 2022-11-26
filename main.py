@@ -5,7 +5,8 @@ LONG_TEXT = """asdlknfasldkmfasdfasdf"""
 def add_word(word: str = ''):
     if isinstance(word, str):
         list_of_words.append(word)
-        return list_of_words.sort()
+        list_of_words.sort()
+        return
     return "Слово не соответствует типу: Str"
 
 
@@ -23,10 +24,9 @@ def get_words(chars: str):
 def crop_text(length):
     i = 0
     yield LONG_TEXT[i:length]
-    i += length
-    yield LONG_TEXT[i:length + i]
-    i += length
-    yield LONG_TEXT[i:length + i]
+    for repeats in range(len(LONG_TEXT) // length):
+        i += length
+        yield LONG_TEXT[i:length + i]
     return 0
 
 
